@@ -20,7 +20,7 @@
         .mytitle {
             background-color: green;
             height: 250px;
-            color:  white;
+            color: white;
 
             display: flex;
             flex-direction: column;
@@ -32,17 +32,42 @@
             background-size: cover;
         }
 
-        .mytitle > button{
+        .mytitle>button {
             width: 150px;
             height: 50px;
             background-color: transparent;
             color: white;
-            border:  1px solid white;
+            border: 1px solid white;
             border-radius: 5px;
             margin-top: 20px;
-            
+
         }
 
+        .mycards {
+            width: 1200px;
+            margin: 30px auto 0px auto;
+        }
+
+        .mypostingbox{
+            width: 500px;
+            margin: 30px auto 0px auto;
+            padding: 20px;
+            box-shadow:  0px 0px 3px 0px blueviolet;
+            border-radius: 5px;
+        }
+
+        .myBtn
+        {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .myBtn > button
+        {
+            margin-right: 5px;
+        }
     </style>
 </head>
 
@@ -50,6 +75,70 @@
     <div class="mytitle">
         <h1>나만의 추억앨범</h1>
         <button>추억 저장하기</button>
+    </div>
+
+    <div class="mypostingbox">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="앨범 이미지">
+            <label for="floatingInput">앨범 이미지</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="앨범 제목">
+            <label for="floatingInput">앨범 제목</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="앨범 내용">
+            <label for="floatingInput">앨범 내용</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="앨범 날짜">
+            <label for="floatingInput">앨범 날짜</label>
+        </div>
+        <div class="myBtn">
+            <button type="button" class="btn btn-dark">기록하기</button>
+            <button type="button" class="btn btn-outline-dark">닫기</button>
+        </div>
+    </div>
+    
+    <div class="mycards">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1446768500601-ac47e5ec3719?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1446&q=80"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">앨범 제목</h5>
+                    <p class="card-text">앨범 내용</p>
+                    <p class="card-text"><small class="text-body-secondary">앨범 날짜</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1446768500601-ac47e5ec3719?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1446&q=80"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">앨범 제목</h5>
+                    <p class="card-text">앨범 내용</p>
+                    <p class="card-text"><small class="text-body-secondary">앨범 날짜</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1446768500601-ac47e5ec3719?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1446&q=80"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">앨범 제목</h5>
+                    <p class="card-text">앨범 내용</p>
+                    <p class="card-text"><small class="text-body-secondary">앨범 날짜</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1446768500601-ac47e5ec3719?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1446&q=80"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">앨범 제목</h5>
+                    <p class="card-text">앨범 내용</p>
+                    <p class="card-text"><small class="text-body-secondary">앨범 날짜</small></p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
