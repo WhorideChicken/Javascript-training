@@ -42,19 +42,21 @@
             border-radius: 5px;
             padding: 20px;
         }
-        .myHostingBox > button {
+
+        .myHostingBox>button {
             width: 100%;
         }
+
         .form-floating>input {
             background-color: transparent;
             color: white;
         }
 
-        .form-floating > label {
+        .form-floating>label {
             color: white;
         }
 
-        .input-group > label {
+        .input-group>label {
             background-color: transparent;
             color: white;
         }
@@ -67,15 +69,25 @@
         console.log(b);
 
 
-        let fruit = ['apple','pear','lemon'];
-        let person = {'name' : 'bob', 'age' : 30, 'height' :180};
+        let fruit = ['apple', 'pear', 'lemon'];
+        let person = { 'name': 'bob', 'age': 30, 'height': 180 };
 
         let name = person['name'];
-        let myFruit =  fruit[0];
+        let myFruit = fruit[0];
 
         console.log(name);
         console.log(myFruit);
-        
+        let ages = [10, 32, 65, 31, 33, 67, 1, 88, 90];
+
+        ages.forEach(age => {
+            if (age < 15) {
+                console.log("청소년입니다.");
+            }
+            else {
+                console.log("청소년이 아닙니다");
+            }
+        });
+
     </script>
 
 </head>
