@@ -68,20 +68,70 @@
             margin-right: 5px;
         }
     </style>
-    <script>
-        $(document).ready(function () {
-            showAirCondition();
-        })
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-        function openclose() {
-            $('#postingbix').toggle();
-        }
 
-        function makeCard() {
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyCC2X1AKx8tFg9M4EhGywHCnPo_PH6vjAw",
+            authDomain: "desktop-3dba3.firebaseapp.com",
+            projectId: "desktop-3dba3",
+            storageBucket: "desktop-3dba3.appspot.com",
+            messagingSenderId: "287288668589",
+            appId: "1:287288668589:web:ead0100ef5696a2cab7124",
+            measurementId: "G-ND0ZKH2LE9"
+        };
+
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        $("#postingbtn").click(async function () {
             let image = $('#image').val();
             let title = $('#title').val();
             let content = $('#content').val();
             let date = $('#date').val();
+
+            let doc = {
+                'image': image,
+                'title': title,
+                'content': content,
+                'date': date
+            };
+
+            await addDoc(collection(db, "albums"), doc);
+            alert('저장 완료');
+            window.location.reload();
+        });
+
+        $('#savebtn').click(async function () {
+            $('#postingbix').toggle();
+
+        });
+
+
+        let url = 'http://spartacodingclub.shop/sparta_api/seoulair';
+
+        fetch(url).then(res => res.json()).then(data => {
+            let mise = data['RealtimeCityAir']['row'][0]['IDEX_NM'];
+            $('#condition').text(mise);
+        });
+
+        let docs = await getDocs(collection(db, "albums"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+            console.log(row);
+
+            let image = row['image'];
+            let title =row['title'];
+            let content = row['content'];
+            let date =row['date'];
 
             let temp_html = `            
             <div class="card">
@@ -94,18 +144,8 @@
                 </div>
             </div>`;
 
-
             $('#card').append(temp_html);
-        }
-
-        function showAirCondition() {
-            let url = 'http://spartacodingclub.shop/sparta_api/seoulair';
-
-            fetch(url).then(res => res.json()).then(data => {
-                let mise = data['RealtimeCityAir']['row'][0]['IDEX_NM'];
-                $('#condition').text(mise);
-            });
-        }
+        });
 
 
     </script>
@@ -115,7 +155,7 @@
     <div class="mytitle">
         <h1>나만의 추억앨범</h1>
         <p>현재 서울의 미세먼지 : <span id="condition"></span></p>
-        <button onclick="openclose()">추억 저장하기</button>
+        <button id="savebtn">추억 저장하기</button>
     </div>
 
     <div class="mypostingbox" id="postingbix">
@@ -136,7 +176,7 @@
             <label for="floatingInput">앨범 날짜</label>
         </div>
         <div class="myBtn">
-            <button onclick="makeCard()" type="button" class="btn btn-dark">기록하기</button>
+            <button id="postingbtn" type="button" class="btn btn-dark">기록하기</button>
             <button type="button" class="btn btn-outline-dark">닫기</button>
         </div>
     </div>
