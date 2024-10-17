@@ -20,7 +20,6 @@
         }
 
         .mytitle {
-            background-color: green;
             height: 250px;
             color: white;
 
@@ -70,6 +69,10 @@
         }
     </style>
     <script>
+        $(document).ready(function () {
+            showAirCondition();
+        })
+
         function openclose() {
             $('#postingbix').toggle();
         }
@@ -94,12 +97,24 @@
 
             $('#card').append(temp_html);
         }
+
+        function showAirCondition() {
+            let url = 'http://spartacodingclub.shop/sparta_api/seoulair';
+
+            fetch(url).then(res => res.json()).then(data => {
+                let mise = data['RealtimeCityAir']['row'][0]['IDEX_NM'];
+                $('#condition').text(mise);
+            });
+        }
+
+
     </script>
 </head>
 
 <body>
     <div class="mytitle">
         <h1>나만의 추억앨범</h1>
+        <p>현재 서울의 미세먼지 : <span id="condition"></span></p>
         <button onclick="openclose()">추억 저장하기</button>
     </div>
 
@@ -127,7 +142,7 @@
     </div>
 
     <div class="mycards">
-        <div id ='card' class="row row-cols-1 row-cols-md-4 g-4">
+        <div id='card' class="row row-cols-1 row-cols-md-4 g-4">
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1446768500601-ac47e5ec3719?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1446&q=80"
                     class="card-img-top" alt="...">

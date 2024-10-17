@@ -11,6 +11,9 @@
         div.question-box {
             margin: 10px 0 20px 0;
         }
+        .bad{
+            color: red;
+        }
     </style>
 
     <script>
@@ -26,7 +29,13 @@
                     let gu = element['MSRSTE_NM'];
                     let num = element['IDEX_MVL'];
 
-                    let tmep_html =` <li>${gu} : ${num}</li>`;
+                    let tmep_html =``;
+                    if(num>40){
+                        tmep_html =`<li class="bad">${gu} : ${num}</li>`;
+                    }
+                    else{
+                        tmep_html =`<li >${gu} : ${num}</li>`;
+                    }
 
                     $('#names-q1').append(tmep_html);
 
