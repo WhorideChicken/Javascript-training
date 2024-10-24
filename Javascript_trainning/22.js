@@ -20,5 +20,5 @@ var maxApply = Math.min.apply(null, nubers);
 
 // spread operator : ...
 console.log(...nubers);
-var maxSpread = Math.max.apply(...nubers);
-var maxSpread = Math.min.apply(...nubers);
+var maxSpread = Math.max(...nubers);
+var maxSpread = Math.min(...nubers);

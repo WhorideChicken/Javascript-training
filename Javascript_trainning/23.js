@@ -23,3 +23,5 @@ bindFunc2(7,8);
 console.log(func.name);
 console.log(bindFunc1.name);
 console.log(bindFunc2.name);
+
+//call보다 bind가 더 많이 쓰인다

@@ -1,3 +1,5 @@
+//데이터타입
+//javascript는 코드를 작성할 때가 아닌, 실제 코드가 실핼 될 때 데이터 타입이 결정 된다.
 console.log("Hello World!");
 
 let str = "Hello World";
@@ -26,3 +28,10 @@ console.log(result2);
 let str6 ="apple, banana, kiwi";
 let result3 = str6.split(",");
 console.log(result3);
+
+
+var a = 10; //기본형
+var obj1 = { c:10, d: 'ddd'} //참조형
+
+var b = a;
+var obj2 = obj1;

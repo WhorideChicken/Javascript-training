@@ -23,3 +23,4 @@ console.log(2 !== "2");
 let x = 10;
 let result = (x > 5) ? "크다" : "작다";
 console.log(result);
+
