@@ -84,3 +84,12 @@ var deepUser2 = copyDeep(deepUser);
 deepUser2.urls.blog ="없지롱";
 console.log(deepUser);
 console.log(deepUser2);
+
+// ==는 타입까진 일치하지 않아도 되는 동등연산자.
+console.log(typeof null)
+console.log(null == undefined);
+console.log(null == null);
+
+//일치 연산자 === 타입까지 일치해야함
+console.log(null === undefined);
+
