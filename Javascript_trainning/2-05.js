@@ -11,9 +11,16 @@ mySet.add('value7');
 console.log(mySet.size);
 console.log(mySet.has('value1'));
 
+console.log(mySet.value(1));
 //map도 마찬가지로 for of로 반복을 할 수 있다.
 
 for(const value of mySet.values())
 {
     console.log(value);
 }
+
+let ojb = {name : "Bob", age : 25};
+let {name, age, gender} = obj;
+
+//{name, age, gender = "male"} = ojb;
+({name, age, gender = "male"} = ojb);
