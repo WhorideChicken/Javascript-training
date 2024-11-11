@@ -14,6 +14,7 @@ router.get('/news',(req, res)=>{
 //이 API는 클라이언트로 받은 newId를 서버 콘솔에 출력한 후 결과를 JSON 형태로 반환합니다.
 //localhost:3000/api/news/여기 
 //즉 /뒤에 파라메타를 던져주면 아래의 get으로 해당 파라메터로 던져주게 되고 
+//newsId와 매칭 되는 req.params에 할당이 됩니다.
 router.get('/news/:newsId',(req, res)=>{
 
     const params = req.params;
