@@ -1,42 +1,9 @@
 import express from "express";
+import Goods from "../schemas/goods.js";
+import mongoose from "mongoose";
 
 //익스프레스의 라우터 생성
 const router = express.Router();
-
-const goods = [
-    {
-      goodsId: 1,
-      name: '상품 1',
-      thumbnailUrl:
-        'https://cdn.pixabay.com/photo/2016/09/07/19/54/wines-1652455_1280.jpg',
-      category: 'drink',
-      price: 6.2,
-    },
-    {
-      goodsId: 2,
-      name: '상품 2',
-      thumbnailUrl:
-        'https://cdn.pixabay.com/photo/2014/08/26/19/19/wine-428316_1280.jpg',
-      category: 'drink',
-      price: 0.11,
-    },
-    {
-      goodsId: 3,
-      name: '상품 3',
-      thumbnailUrl:
-        'https://cdn.pixabay.com/photo/2016/09/07/02/12/frogs-1650658_1280.jpg',
-      category: 'drink',
-      price: 2.2,
-    },
-    {
-      goodsId: 4,
-      name: '상품 4',
-      thumbnailUrl:
-        'https://cdn.pixabay.com/photo/2016/09/07/02/11/frogs-1650657_1280.jpg',
-      category: 'drink',
-      price: 0.1,
-    },
-  ];
 
   router.get('/goods/:goodsId',(req, res)=>{
     let params = req.params.goodsId;
@@ -53,29 +20,34 @@ const goods = [
   });
 
 
-//등록 : POST
-//POST 메서드의 경우 클라이언트가 전달하는 데이터를 수신해야합나디, 이때 클라이언트가 전달하는
-//데이터는 Express.js에서 req.body로 접근하여 사용할 수 있습니다.
-//하지만 Express.js에서는 req.body에 접근하기 위해서는 Body Parser라는 미들웨어를 적용해야합니다.
-//Body Parser는 클라이언트가 전송하는 데이터를 해석하여 req.body 객체로 반들어주는 역할을합니다.
-router.post('/goods',(req, res)=>{
+
+router.post('/goods',async (req, res)=>{
     //1.name, thun, catergory, price
 
-    const {name, thumbnailUrl, category, price} = req.body;
-    const goodsId = goods[goods.length-1].goodsId +1;
+    const { goodsId, name, thumbnailUrl, category, price} = req.body;
 
-    const goodsItem ={
+    //DB에 해당 굿즈가 있는지 체크 exec(); -> promise를 반환해서 비동기 처리하기 위해 실행 : 데이터 생성 때는 사용 X, 조회 때만 사용
+    const goods = await Goods.find({goodsId}).exec();
+
+    //find는 전체에서 서치하는거라 배열을 반환합니다 length로 체크
+    if(goods.length){
+      return res.status(400).json({
+        success : false,
+        errorMessage : "이미 등록 된 상품입니다."
+      });
+    }
+    
+    const creategoodsItem = await Goods.create({
         goodsId,
         name,
         thumbnailUrl,
         category,
         price
-    }
+    });
 
-    goods.push(goodsItem);
 
     return res.status(201).json({
-        goods : goodsItem
+        goods : creategoodsItem
     });
 
 });
