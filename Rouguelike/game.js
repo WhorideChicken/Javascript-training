@@ -25,6 +25,7 @@ class Monster {
     this.hp = 100 + (stage * 10);
     this.atk = 1 + stage;
     this.def = 5 + (stage*0.5);
+    this.stage = stage;
   }
 
   attack() {
@@ -67,13 +68,10 @@ const battle = async (stage, player, monster) => {
     switch(choice)
     {
         case "1":
-
             break;
         case "2":
-
             break;
         case "3":
-
             break;
         case "cheat":
             monster.hp = 0;
@@ -84,22 +82,6 @@ const battle = async (stage, player, monster) => {
         default:
             logs.push(chalk.red('올바른 선택을 하세요.'));
             break;
-    }
-
-    if(monster.hp <= 0)
-    {
-        console.log(chalk.green(`${stage} 번째 몬스터를 처치하셨습니다.`));
-        console.log(chalk.green("Stage Clear"));
-        InputEnter("다음 Stage로 이동하기");
-        break;
-    }
-
-    if(player.hp <=0)
-    {
-        console.log(chalk.red("WASTED"));
-        InputEnter("처음부터 다시 하기");
-        start();
-        break;
     }
   }
   
@@ -123,6 +105,7 @@ function restart()
 {
     start();
 }
+
 
 function InputEnter(message)
 {

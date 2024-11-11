@@ -2,9 +2,13 @@
 import express from 'express';
 import goodsRouter from './routes/goods.js';
 import newsRouter from './routes/news.js';
+import connect from './schemas/index.js';
 
 const app = express();
 const PORT = 3000;
+
+//connect 실행
+connect();
 
 //json 형태로 서버에 body데이터를 전달하면 req.body에 데이터를 변환해서 넣어준다.
 app.use(express.json()); 
