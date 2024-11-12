@@ -2,15 +2,15 @@ import chalk from 'chalk';
 import readlineSync from 'readline-sync';
 import {start} from "./server.js";
 class Player {
-  constructor(isRun) {
-    this.hp = 100;
-    this.atk = 3;
-    this.def = 8;
-    this.isRun = isRun;
+  constructor(hp, attack, dotge) {
+    this.hp = hp;
+    this.atk = attack;
+    this.dotge = dotge;
   }
 
   attack() {
     // 플레이어의 공격
+    return this.atk;
   }
 
   run()
@@ -30,6 +30,11 @@ class Monster {
 
   attack() {
     // 몬스터의 공격
+  }
+
+  damaged(pAttack)
+  {
+    this.hp -= pAttack;
   }
 }
 
@@ -68,6 +73,7 @@ const battle = async (stage, player, monster) => {
     switch(choice)
     {
         case "1":
+            monster.damaged(player.attack());
             break;
         case "2":
             break;
@@ -89,7 +95,7 @@ const battle = async (stage, player, monster) => {
 
 export async function startGame(isRun = false, startStage = 1) {
   console.clear();
-  const player = new Player(isRun);
+  const player = new Player(100, 5, 3);
   let stage = startStage;
   console.log(isRun);
   while (stage <= 10) {

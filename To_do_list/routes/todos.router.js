@@ -10,7 +10,7 @@ const createSchema = Joi.object({
 
 //할일 등록 API
 //할일 등록 ; DB 조회를 위해 async 사용
-router.post("/todos", async (req, res) => {
+router.post("/todos", async (req, res, next) => {
     //1. 클라이언트로 부터 받아온 value 데이터를 가져온다
 
     try {
@@ -32,21 +32,10 @@ router.post("/todos", async (req, res) => {
         return res.status(201).json({ todo: todo });
     }
     catch (error) {
-        if(error.name === "ValidationError")
-        {
-            return res.status(400).json({
-                errorMessage: error.message
-            });    
-        }
-
-        //500번은 서버에 문제가 있을 때 이슈
-        return res.status(500).json({
-            errorMessage: error.message
-        });
+        next(error);
     }
 
 });
-
 
 //해야할일 목록 조회
 router.get("/todos", async (req, res) => {
